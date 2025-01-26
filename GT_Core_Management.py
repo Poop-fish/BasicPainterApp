@@ -31,7 +31,7 @@ class BasicPaint:
 
     def toggle_eraser(self):
         self.is_eraser = not self.is_eraser
-        self.current_color = "white" if self.is_eraser else "black"  
+        self.current_color = "white" # if self.is_eraser else "black"  ( dont need this )
         if hasattr(self, 'eraser_button'):  
             self.eraser_button.config(text="Drawing" if self.is_eraser else "Eraser")
     
