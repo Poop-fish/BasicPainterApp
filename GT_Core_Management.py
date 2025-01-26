@@ -14,9 +14,9 @@ class BasicPaint:
         self.is_eraser = False
         self.colors = ["black", "red", "green", "blue", "yellow", "orange", "pink", "purple", "brown", "gray"]
         self.current_angle = 0  
-        self.radius = 70  
-        self.center_x = 110  
-        self.center_y = 600 
+        self.radius = 60
+        self.center_x = 85  
+        self.center_y = 400 
         self.color_buttons = []  
         
         apply_styles(root) 
@@ -80,6 +80,6 @@ class BasicPaint:
             new_angle = angle + 5  
             x = self.center_x + self.radius * math.cos(math.radians(new_angle))  
             y = self.center_y + self.radius * math.sin(math.radians(new_angle))  
-            button.place(x=x - 20, y=y - 10)  
+            button.place(x=x - 15, y=y - 2)  
             self.color_buttons[i] = (button, new_angle)
         self.root.after(50, self.spin_buttons)
