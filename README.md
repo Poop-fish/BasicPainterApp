@@ -19,13 +19,13 @@
 
 ## Installation
 
-To use BasicPainter, you'll need Python and the required dependencies installed on your machine.
+ you'll need Python and the required dependencies installed on your machine.
 
 
 - pip install pillow
 
 
-and the rest of the stuff should already be pre intalled 
+and the rest of the stuff should already be pre intalled if not just google the imports and the intalls needed
 
 
 ## File Structure
