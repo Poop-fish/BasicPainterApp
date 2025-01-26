@@ -38,5 +38,9 @@ BasicPainter/
 ├── GT_Ui_Management.py       
 ├── GT_Widgets_Editor.py      
 ├── GT_CustomStyle.py   
-├── Example.py
+├── Example.py 
+
+Example.py is a example how you can add it to a TK window :
+![Screenshot 2025-01-26 113850](https://github.com/user-attachments/assets/bc26e2c9-a12a-4215-80f8-d0d416b595ec)
+
  
