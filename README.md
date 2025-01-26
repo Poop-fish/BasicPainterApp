@@ -33,6 +33,7 @@ and the rest of the stuff should already be pre intalled
 BasicPainter/
 
 ├── Assets\
+├── Example.py
 ├── basic_paint.py            
 ├── GT_imports.py             
 ├── GT_Ui_Management.py       
