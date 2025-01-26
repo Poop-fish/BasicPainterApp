@@ -3,14 +3,11 @@ import GT_Widgets_Editor
 import colorsys
 
 #! ----------------Widget Classes --------------------------------
-import tkinter as tk
-from tkinter import ttk, colorchooser
-
 
 class CustomColorPicker:
     def __init__(self, color_callback):
-        self.color_callback = color_callback  # Function to update the selected color
-        self.current_color = (0, 0, 0)  # Default color
+        self.color_callback = color_callback  
+        self.current_color = (0, 0, 0)  
 
     def open_picker(self):
         """Open the custom color picker in a new window."""
@@ -19,19 +16,16 @@ class CustomColorPicker:
         picker_window.geometry("400x500")
         picker_window.resizable(False, False)
 
-        # Canvas for the color triangle
         color_canvas = tk.Canvas(picker_window, width=200, height=200, bg="white")
         color_canvas.pack(side="top", padx=20, pady=10)
         self.draw_color_triangle(color_canvas)
 
-        # Shade slider
         shade_label = ttk.Label(picker_window, text="Shade")
         shade_label.pack(side="top", padx=20)
         shade_slider = ttk.Scale(picker_window, from_=0, to=100, orient="horizontal", command=self.on_shade_change)
         shade_slider.set(100)  
         shade_slider.pack(side="top", padx=20, pady=10)
 
-        # Predefined color buttons
         button_frame = tk.Frame(picker_window)
         button_frame.pack(side="top", pady=10)
 
@@ -48,11 +42,9 @@ class CustomColorPicker:
             color_button = tk.Button(button_frame, text=color_name, bg=color_code, command=lambda color=color_code: self.on_color_pick_predefined(color))
             color_button.pack(side="left", padx=5, pady=5)
 
-        # Close Button
         close_button = ttk.Button(picker_window, text="Close", command=picker_window.destroy)
         close_button.pack(side="bottom", pady=10)
 
-        # Bind canvas click
         color_canvas.bind("<Button-1>", lambda event: self.on_color_pick(event, color_canvas))
 
     def draw_color_triangle(self, canvas):
