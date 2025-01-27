@@ -95,16 +95,7 @@ class CustomColorPicker:
         return tuple(int(hex_code[i:i+2], 16) for i in (0, 2, 4))
 
 #!------------ Editor Management --------------------------------
-is_eraser = False
-def paint(self, event):
-    x, y = event.x, event.y
-    if self.last_x and self.last_y:
-        draw_color = "white" if is_eraser else self.current_color
-        self.canvas.create_line(
-            self.last_x, self.last_y, x, y, width=self.brush_size,
-            fill=draw_color, capstyle=tk.ROUND, smooth=tk.TRUE
-        )
-    self.last_x, self.last_y = x, y
+
 
 def reset(self, event):
     self.last_x, self.last_y = None, None
