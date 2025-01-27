@@ -20,7 +20,7 @@
 ## New Fearures Added
 
 - Settings for the sppiing Buttons ( Stop button and setting to adjust the speed)
-- 
+- Shapes ( Circle And Square )
 - 
 
 ## Installation
