@@ -17,6 +17,12 @@
 - **Clear Canvas**: Clear the drawing area for a fresh start.
 
 
+## New Fearures Added
+
+- Settings for the sppiing Buttons ( Stop button and setting to adjust the speed)
+- 
+- 
+
 ## Installation
 
  you'll need Python and the required dependencies installed on your machine.
