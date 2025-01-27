@@ -19,7 +19,7 @@
 
 ## New Fearures Added
 
-- Settings for the sppiing Buttons ( Stop button and setting to adjust the speed)
+- Settings for the spinning Buttons ( A Stop Button and setting to adjust the speed)
 - Shapes ( Circle And Square )
 - 
 
