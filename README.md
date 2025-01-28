@@ -33,7 +33,6 @@
  you'll need Python and the required dependencies installed on your machine.
 
 - pip install pillow
-- pip install pillow
 
 
 and the rest of the stuff should already be pre intalled if not just google the imports and the intalls needed
