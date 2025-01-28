@@ -24,7 +24,8 @@
 - add text to the canvas
 - upload PNG images and draw on them and save what you did
 - toggle grid lines
-- remade the custom palette 
+- remade the custom palette
+- text added to the canvas is draggable with right click ( buggy )
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
