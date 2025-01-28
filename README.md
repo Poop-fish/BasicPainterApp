@@ -32,7 +32,7 @@
 
  you'll need Python and the required dependencies installed on your machine.
 
-
+- pip install pillow
 - pip install pillow
 
 
