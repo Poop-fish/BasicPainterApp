@@ -17,7 +17,7 @@
 - **Clear Canvas**: Clear the drawing area for a fresh start.
 
 
-# New Fearures Added and Updates
+# New Features Added and Updates
 
 - Settings for the spinning Buttons ( A Stop Button and setting to adjust the speed)
 - Shapes ( Circle And Square )
