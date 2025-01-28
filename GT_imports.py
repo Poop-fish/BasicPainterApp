@@ -4,6 +4,6 @@ from tkinter import colorchooser, filedialog, ttk
 from tkinter import Canvas, Scale, HORIZONTAL
 
 # \\ Base imports \\ 
-from PIL import Image, ImageDraw 
-
-import math
+from PIL import Image, ImageDraw  , ImageTk
+from tkinter import simpledialog
+import math , os
