@@ -44,7 +44,7 @@ and the rest of the stuff should already be pre intalled if not just google the 
 BasicPainter/
 
 ├── Assets\
-├── basic_paint.py            
+├── GT_Core_Management.py            
 ├── GT_imports.py             
 ├── GT_Ui_Management.py       
 ├── GT_Widgets_Editor.py      
