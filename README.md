@@ -17,11 +17,16 @@
 - **Clear Canvas**: Clear the drawing area for a fresh start.
 
 
-## New Fearures Added
+# New Fearures Added and Updates
 
 - Settings for the spinning Buttons ( A Stop Button and setting to adjust the speed)
 - Shapes ( Circle And Square )
-- 
+- add text to the canvas
+- upload PNG images and draw on them and save what you did
+- toggle grid lines
+- remade the custom palette 
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ## Installation
 
