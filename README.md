@@ -56,12 +56,19 @@ and the rest of the stuff should already be pre intalled if not just google the 
 BasicPainter/
 
 ├── Assets\
+
 ├── GT_Core_Management.py            
+
 ├── GT_imports.py             
+
 ├── GT_Ui_Management.py       
+
 ├── GT_Widgets.py
+
 ├── GT_Editor_Management
+
 ├── GT_CustomStyle.py   
+
 ├── Example.py 
 
 ### Example.py is a example how you can add BasicPaint to a TK window:
