@@ -16,16 +16,28 @@
 
 - **Clear Canvas**: Clear the drawing area for a fresh start.
 
+- **Spinning Buttons:** Added settings to control spinning buttons, including a stop button and speed adjustment.
 
-# New Features Added and Updates
+- **Shapes:** Draw predefined shapes like circles and squares.
 
-- Settings for the spinning Buttons ( A Stop Button and setting to adjust the speed)
-- Shapes ( Circle And Square )
-- add text to the canvas
-- upload PNG images and draw on them and save what you did
-- toggle grid lines
-- remade the custom palette
-- text added to the canvas is draggable with right click ( buggy )
+- **Text Tool:** Add text to your canvas for annotations or creative designs.
+
+- **Image Upload:** Upload PNG images, draw on them, and save your modifications.
+
+- **Grid Lines:** Toggle grid lines on or off for better alignment and precision.
+
+
+## New Features and Updates
+
+- **Custom Palette:** Revamped the custom color palette for a more user-friendly experience.
+
+- **Draggable Text:** Added functionality to drag text on the canvas using right-click (currently experimental and may have minor bugs).
+
+- **Save Function Fix:** Improved the save functionality to ensure smoother and more reliable saving of artwork.
+
+- **Custom GUI Widgets:** Added custom GUI widgets for a more polished and unique user interface.
+
+- **Custom Palette Changes:** Enhanced the custom palette with additional customization options and improved usability.
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -47,7 +59,8 @@ BasicPainter/
 ├── GT_Core_Management.py            
 ├── GT_imports.py             
 ├── GT_Ui_Management.py       
-├── GT_Widgets_Editor.py      
+├── GT_Widgets.py
+├── GT_Editor_Management
 ├── GT_CustomStyle.py   
 ├── Example.py 
 
