@@ -285,7 +285,7 @@ class CustomColorPicker:
         picker_window = tk.Toplevel()
         picker_window.title("Custom Color Picker")
         picker_window.geometry("500x600")
-        picker_window.resizable(True, True)
+        picker_window.resizable(False, False)
         picker_window.configure(bg="#2b2b2b")
         color_frame = tk.Frame(picker_window, bd=10, relief="sunken", background="black")
         color_frame.pack(side="top", padx=20, pady=10)
