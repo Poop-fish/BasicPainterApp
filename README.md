@@ -39,6 +39,8 @@
 
 - **Custom Palette Changes:** Enhanced the custom palette with additional customization options and improved usability.
 
+-  **Custom Window Icon:** Added Custom icon For the main window 
+
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ## Installation
