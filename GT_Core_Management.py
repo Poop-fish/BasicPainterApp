@@ -11,7 +11,7 @@ class BasicPaint:
     def __init__(self, root):
         self.root = root
         self.root.title("Basic Paint")
-        self.root.geometry("800x600")
+        self.root.geometry("1000x800")
         self.root.iconbitmap('Assets/Block.ico')
         self.current_color = "black"
         self.brush_size = 5
@@ -25,7 +25,7 @@ class BasicPaint:
         self.current_angle = 0
         self.radius = 90
         self.center_x = 110
-        self.center_y = 500
+        self.center_y = 600
         self.color_buttons = []
         self.shape_mode = None
         self.spin_speed = 50  
@@ -228,13 +228,15 @@ class BasicPaint:
             try:
                 font_size = int(entry_font_size.get())
             except ValueError:
-                messagebox.showerror("Invalid Font Size", "Please enter a valid integer for the font size.")
+                GTG.showerror(popup, "Invalid Font Size", "Please enter a valid integer for the font size.")
                 return
             font_color = entry_color.get() if entry_color.get() else "black"
-            
+
             if not text:
-                messagebox.showerror("Empty Text", "Please enter some text.")
+                GTG.showerror(popup, "Empty Text", "Please enter some text.")
                 return
+
+            GTG.showinfo(popup, "Success", "Text added successfully!")
 
             x = self.canvas.winfo_width() / 2
             y = self.canvas.winfo_height() / 2
