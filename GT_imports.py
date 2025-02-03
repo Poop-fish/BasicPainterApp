@@ -10,5 +10,5 @@ import math , os
 import colorsys 
 
 
-from tkinter import filedialog 
+
 from tkinter import PhotoImage
