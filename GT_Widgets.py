@@ -3,13 +3,28 @@ from GT_imports import *
 class GTG:
     
     class Button(tk.Button): 
-        def __init__(self, parent, enable_hover=True, **kwargs):
+        def __init__(self, parent, enable_hover=True, bg=None, fg=None, hover_bg=None, hover_fg=None, frame=None, **kwargs):
             super().__init__(parent, **kwargs)
+            
+            # Default styles
+            self.default_bg = "#7f7f7f"
+            self.default_fg = "Black"
+            self.default_hover_bg = "light gray"
+            self.default_hover_fg = "white"
+            self.default_frame = "ridge"  
+            
+            self.bg = bg if bg is not None else self.default_bg
+            self.fg = fg if fg is not None else self.default_fg
+            self.hover_bg = hover_bg if hover_bg is not None else self.default_hover_bg
+            self.hover_fg = hover_fg if hover_fg is not None else self.default_hover_fg
+            self.frame = frame if frame is not None else self.default_frame
+            
             self.enable_hover = enable_hover
+        
             self.configure(
-                bg="#7f7f7f",  
-                fg="Black",   
-                relief="ridge", 
+                bg=self.bg,  
+                fg=self.fg,   
+                relief=self.frame, 
                 font=("Arial", 12, "bold"), 
                 activebackground="darkgray",  
                 activeforeground="white",  
@@ -17,20 +32,26 @@ class GTG:
                 highlightthickness=0, 
                 pady=5, padx=10 
             )
+            
+            # Bind hover events if enabled
             if self.enable_hover:
                 self.bind("<Enter>", self.on_hover) 
                 self.bind("<Leave>", self.on_leave)
 
         def on_hover(self, event):
+            """Change button appearance on hover."""
             if self.enable_hover:
-                self.configure(bg="light gray", relief="raised", borderwidth=10)  
+                self.configure(bg=self.hover_bg, fg=self.hover_fg, relief="raised", borderwidth=10)  
 
         def on_leave(self, event):
+            """Revert button appearance when not hovering."""
             if self.enable_hover:
-                self.configure(bg="#7f7f7f", relief="ridge", borderwidth=10)  
+                self.configure(bg=self.bg, fg=self.fg, relief=self.frame, borderwidth=10)  
         
         def toggle_text(self, new_text):
+            """Change the button's text."""
             self.config(text=new_text)
+
     
     
     class Label(tk.Label):
@@ -189,7 +210,6 @@ class GTG:
 
 
 
-
     class Scale(tk.Scale):
         def __init__(self, parent, enable_hover=True, enable_click_effect=True, show_value=True, **kwargs):
             super().__init__(parent, **kwargs)
@@ -269,7 +289,246 @@ class GTG:
             """Toggle the display of the slider's value"""
             self.configure(showvalue=show_value)
 
-        
+
+    class MessageBox(tk.Toplevel):
+        def __init__(self, parent, title, message, message_type="info", buttons=["OK"], **kwargs):
+            super().__init__(parent, **kwargs)
+            self.parent = parent
+            self.title(title)
+            self.message = message
+            self.message_type = message_type
+            self.buttons = buttons
+
+            self.configure(bg="#7f7f7f", padx=20, pady=20)
+            self.resizable(False, False)
+
+            self.create_widgets()
+
+        def create_widgets(self):
+            message_label = GTG.Label(self, text=self.message, bg="#7f7f7f", fg="red", font=("Arial", 12))
+            message_label.pack(pady=10)
+
+            button_frame = GTG.Frame(self, bg="#7f7f7f" , enable_hover=False)
+            button_frame.pack(pady=10)
+
+            for button_text in self.buttons:
+                button = GTG.Button(button_frame, text=button_text, command=lambda bt=button_text: self.on_button_click(bt) ,bg="red")
+                button.pack(side=tk.LEFT, padx=5)
+
+        def on_button_click(self, button_text):
+            """Handle button clicks and close the message box."""
+            self.destroy()
+            return button_text
+
+    # Helper methods for common message box types
+    @staticmethod
+    def showinfo(parent, title, message):
+        """Display an info message box."""
+        dialog = GTG.MessageBox(parent, title, message, message_type="info")
+        parent.wait_window(dialog)
+
+    @staticmethod
+    def showerror(parent, title, message):
+        """Display an error message box."""
+        dialog = GTG.MessageBox(parent, title, message, message_type="error")
+        parent.wait_window(dialog)
+
+    @staticmethod
+    def showwarning(parent, title, message):
+        """Display a warning message box."""
+        dialog = GTG.MessageBox(parent, title, message, message_type="warning")
+        parent.wait_window(dialog)
+
+    @staticmethod
+    def askyesno(parent, title, message):
+        """Display a yes/no confirmation dialog."""
+        dialog = GTG.MessageBox(parent, title, message, buttons=["Yes", "No"])
+        return dialog.on_button_click("Yes") if dialog.on_button_click("Yes") else False
+
+    @staticmethod
+    def askokcancel(parent, title, message):
+        """Display an OK/Cancel confirmation dialog."""
+        dialog = GTG.MessageBox(parent, title, message, buttons=["OK", "Cancel"])
+        return dialog.on_button_click("OK") if dialog.on_button_click("OK") else False
+
+
+
+    class Menu(tk.Menu):
+        def __init__(self, parent, enable_hover=True, bg=None, fg=None, hover_bg=None, hover_fg=None, **kwargs):
+            super().__init__(parent, **kwargs)
+
+            self.default_bg = "#7f7f7f"
+            self.default_fg = "Black"
+            self.default_hover_bg = "light gray"
+            self.default_hover_fg = "white"
+
+            self.bg = bg if bg is not None else self.default_bg
+            self.fg = fg if fg is not None else self.default_fg
+            self.hover_bg = hover_bg if hover_bg is not None else self.default_hover_bg
+            self.hover_fg = hover_fg if hover_fg is not None else self.default_hover_fg
+
+            self.enable_hover = enable_hover
+
+            self.configure(
+                bg=self.bg,
+                fg=self.fg,
+                activebackground=self.hover_bg,
+                activeforeground=self.hover_fg,
+                relief="raised",
+                font=("Arial", 12)
+            )
+
+            if self.enable_hover:
+                self.bind("<Enter>", self.on_hover)
+                self.bind("<Leave>", self.on_leave)
+
+        def on_hover(self, event):
+            if self.enable_hover:
+                self.configure(bg=self.hover_bg, fg=self.hover_fg)
+
+        def on_leave(self, event):
+            if self.enable_hover:
+                self.configure(bg=self.bg, fg=self.fg)
+
+        def add_command(self, label, command=None, **kwargs):
+            """Add a command to the menu."""
+            super().add_command(label=label, command=command, **kwargs) 
+
+        def add_cascade(self, label, menu=None, **kwargs):
+            """Add a cascade menu."""
+            super().add_cascade(label=label, menu=menu, **kwargs)  
+
+        def add_separator(self):
+            """Add a separator to the menu."""
+            super().add_separator()  
+
+        def add_checkbutton(self, label, command=None, **kwargs):
+            """Add a checkbutton to the menu."""
+            super().add_checkbutton(label=label, command=command, **kwargs)  
+
+        def add_radiobutton(self, label, command=None, **kwargs):
+            """Add a radiobutton to the menu."""
+            super().add_radiobutton(label=label, command=command, **kwargs) 
+    
+    
+    class Scrollbar(tk.Scrollbar):
+        def __init__(self, parent, **kwargs):
+            super().__init__(parent, **kwargs)
+            self.configure(
+                bg="#a0a0a0",
+                troughcolor="#d9d9d9",
+                relief="flat",
+                borderwidth=2
+        )
+    
+    
+    class Listbox(tk.Listbox):
+        def __init__(self, parent, enable_hover=True, bg=None, fg=None, **kwargs):
+            super().__init__(parent, **kwargs)
+
+            self.default_bg = "#ffffff"
+            self.default_fg = "black"
+
+            self.bg = bg if bg is not None else self.default_bg
+            self.fg = fg if fg is not None else self.default_fg
+
+            self.enable_hover = enable_hover
+
+            self.configure(
+                bg=self.bg,
+                fg=self.fg,
+                font=("Arial", 12),
+                selectbackground="gray",
+                selectforeground="white",
+                relief="sunken",
+                borderwidth=5
+            )
+
+            if self.enable_hover:
+                self.bind("<Enter>", self.on_hover)
+                self.bind("<Leave>", self.on_leave)
+
+        def on_hover(self, event):
+            if self.enable_hover:
+                self.configure(bg="#f0f0f0")
+
+        def on_leave(self, event):
+            if self.enable_hover:
+                self.configure(bg=self.bg)
+    
+
+    class Text(tk.Text):
+        def __init__(self, parent, enable_hover=True, **kwargs):
+            super().__init__(parent, **kwargs)
+            self.enable_hover = enable_hover
+
+            self.configure(
+                bg="white",
+                fg="black",
+                font=("Arial", 12),
+                wrap="word",
+                borderwidth=5,
+                relief="sunken",
+                insertbackground="black",
+                highlightthickness=2,
+                highlightbackground="#a0a0a0",
+                highlightcolor="#808080"
+            )
+
+            if self.enable_hover:
+                self.bind("<Enter>", self.on_hover)
+                self.bind("<Leave>", self.on_leave)
+
+        def on_hover(self, event):
+            if self.enable_hover:
+                self.configure(highlightbackground="#808080", highlightcolor="#505050")
+
+        def on_leave(self, event):
+            if self.enable_hover:
+                self.configure(highlightbackground="#a0a0a0", highlightcolor="#808080") 
+    
+    
+    class StringVar(tk.StringVar):
+        def __init__(self, value="", callback=None, **kwargs):
+            super().__init__(**kwargs)
+            self.set(value)
+            self.callback = callback
+            self.trace_add("write", self.on_change)
+
+        def on_change(self, *args):
+            if self.callback:
+                self.callback(self.get())
+
+        def bind_to_widget(self, widget):
+            widget.configure(textvariable=self)
+
+        def get_value(self):
+            return self.get()
+
+        def set_value(self, new_value):
+            self.set(new_value)
+    
+    
+    class BooleanVar(tk.BooleanVar):
+        def __init__(self, value=False, callback=None, **kwargs):
+            super().__init__(**kwargs)
+            self.set(value)
+            self.callback = callback
+            self.trace_add("write", self.on_change)
+
+        def on_change(self, *args):
+            if self.callback:
+                self.callback(self.get())
+
+        def bind_to_widget(self, widget):
+            widget.configure(variable=self)
+
+        def get_value(self):
+            return self.get()
+
+        def set_value(self, new_value):
+            self.set(bool(new_value))
+
 #! -----------------------------------------------------------------------------------
 
 class CustomColorPicker:
@@ -299,12 +558,13 @@ class CustomColorPicker:
         color_canvas.bind("<Button-1>", lambda event: self.on_color_pick(event, color_canvas))
         color_canvas.bind("<B1-Motion>", lambda event: self.on_drag(event, color_canvas))
 
-        shade_label = ttk.Label(picker_window, text="Shade")
+        shade_label = GTG.Label(picker_window, text="Shade" , enable_hover=False)
         shade_label.pack(side="top", padx=20)
 
-        shade_slider = ttk.Scale(picker_window, from_=0, to_=100, orient="horizontal", command=self.on_shade_change)
+        shade_slider = GTG.Scale(picker_window, from_=0, to_=100, orient="horizontal", command=self.on_shade_change)
         shade_slider.set(100)
         shade_slider.pack(side="top", padx=20, pady=10)
+        shade_slider.set_colors(bg="gray", fg="black", troughcolor="#b0b0b0", hover_bg="#d0d0d0", hover_highlight="#707070", click_bg="gray", click_highlight="#505050")
 
         self.color_display_label = ttk.Label(picker_window, text="Selected Color: #000000", font=("Helvetica", 10))
         self.color_display_label.pack(side="top", padx=20, pady=5)
@@ -318,10 +578,10 @@ class CustomColorPicker:
         scrollbar.pack(side="right", fill="y") 
         canvas.pack(side="left", fill="both", expand=True)
 
-        button_frame = tk.Frame(canvas)
+        button_frame = GTG.Frame(canvas)
         canvas.create_window((0, 0), window=button_frame, anchor="nw")
 
-        header_label = ttk.Label(button_frame, text="Predefined Colors", font=("Helvetica", 12, "bold"), relief="sunken", borderwidth=10)
+        header_label = GTG.Label(button_frame, text="Predefined Colors", font=("Helvetica", 12, "bold"), relief="sunken", borderwidth=10 , enable_hover=False)
         header_label.grid(row=0, column=0, columnspan=5, pady=10)
 
         predefined_colors = [
@@ -372,7 +632,7 @@ class CustomColorPicker:
         button_frame.update_idletasks()
         canvas.config(scrollregion=canvas.bbox("all"))
 
-        close_button = ttk.Button(picker_window, text="Close", command=picker_window.destroy)
+        close_button = GTG.Button(picker_window, text="Close", command=picker_window.destroy)
         close_button.pack(side="bottom", pady=10)
 
     def draw_color_square(self, canvas):
@@ -443,6 +703,4 @@ class CustomColorPicker:
         if x < 200 and y < 200:
             self.update_crosshair_position(x, y, canvas)
             self.on_color_pick(event, canvas) 
-
-
 
